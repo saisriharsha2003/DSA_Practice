@@ -1,86 +1,149 @@
-# =================================
-# Python List Operations Demo
-# =================================
+"""
+This single program demonstrates:
+1. Access & Update
+2. Insertion
+3. Deletion
+4. Searching & Counting
+5. Sorting & Reversing
+6. Copying & Extending
+7. List Comprehension
+8. Built-in Functions
+=================================================
+"""
 
-# 1. Creating Lists
-numbers = [1, 2, 3, 4, 5]                  # List of integers
-fruits = ["apple", "banana", "cherry"]     # List of strings
-mixed = [1, "apple", 3.5, True]           # Mixed data types
-nested_list = [[1, 2], [3, 4], [5, 6]]    # Nested lists (2D)
+# ------------------------------------------------
+# 1. ACCESS & UPDATE OPERATIONS
+# ------------------------------------------------
+arr = [10, 20, 30, 40, 50]
 
-# 2. Accessing Elements
-print(numbers[0])    # Access first element -> 1
-print(numbers[-1])   # Access last element -> 5
-print(numbers[1:4])  # Slicing -> [2, 3, 4]
-print(numbers[::2])  # Every second element -> [1, 3, 5]
+# O(1) Access by index
+print(arr[0])        # First element
+print(arr[-1])       # Last element
 
-# 3. Adding Elements
-numbers.append(6)             # Add single element at end
-numbers.extend([7, 8])        # Add multiple elements
-numbers.insert(0, 0)          # Insert 0 at index 0
-print(numbers)                # [0, 1, 2, 3, 4, 5, 6, 7, 8]
+# O(1) Update by index
+arr[1] = 25
+print(arr)           # [10, 25, 30, 40, 50]
 
-# 4. Removing Elements
-numbers.remove(0)             # Remove first occurrence of 0
-popped_element = numbers.pop() # Remove last element (8)
-popped_index_2 = numbers.pop(2) # Remove element at index 2
-print(numbers)                # [1, 2, 4, 5, 6, 7]
-numbers.clear()               # Remove all elements
-print(numbers)                # []
+# O(k) Slicing (creates new list)
+slice_arr = arr[1:4]
+print(slice_arr)     # [25, 30, 40]
 
-# 5. Searching and Counting
-fruits = ["apple", "banana", "cherry", "apple"]
-print(fruits.index("banana")) # Find index -> 1
-print(fruits.count("apple"))  # Count occurrences -> 2
+# ------------------------------------------------
+# 2. INSERTION OPERATIONS
+# ------------------------------------------------
 
-# 6. Sorting and Reversing
-numbers = [5, 2, 9, 1, 5]
-numbers.sort()                # Sort ascending -> [1, 2, 5, 5, 9]
-numbers.sort(reverse=True)    # Sort descending -> [9, 5, 5, 2, 1]
-numbers.reverse()             # Reverse current order -> [1, 2, 5, 5, 9]
-print(numbers)
+# O(1) Amortized append
+arr.append(60)
+print(arr)
 
-# 7. Copying Lists
-original = [1, 2, 3]
-copy_list = original.copy()   # Shallow copy
-another_copy = list(original) # Another way to copy
-original.append(4)
-print(original)   # [1, 2, 3, 4]
-print(copy_list)  # [1, 2, 3]
+# O(n) Insert at beginning (shifts elements)
+arr.insert(0, 5)
+print(arr)
 
-# 8. List Comprehensions
-squares = [x**2 for x in range(6)]        # Square of numbers -> [0, 1, 4, 9, 16, 25]
-evens = [x for x in range(10) if x % 2 == 0] # Even numbers -> [0, 2, 4, 6, 8]
-print(squares)
-print(evens)
+# O(n) Insert at middle
+arr.insert(3, 35)
+print(arr)
 
-# 9. Nested Lists
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
-print(matrix[1][2])  # Access element 6
-for row in matrix:
-    for value in row:
-        print(value, end=" ")  # Prints all elements in matrix
-print()
+# ------------------------------------------------
+# 3. DELETION OPERATIONS
+# ------------------------------------------------
 
-# 10. Built-in Functions
-nums = [1, 2, 3, 4, 5]
-print(len(nums))    # 5 -> Number of elements
-print(min(nums))    # 1 -> Minimum element
-print(max(nums))    # 5 -> Maximum element
-print(sum(nums))    # 15 -> Sum of elements
-print(any([0, False, 1])) # True -> at least one True element
-print(all([0, True, 1]))  # False -> not all elements are True
+# O(1) Pop last element
+last = arr.pop()
+print("Popped:", last)
+print(arr)
 
-# 11. Mutable Behavior
+# O(n) Pop from specific index
+middle = arr.pop(3)
+print("Removed:", middle)
+print(arr)
+
+# O(n) Remove by value (search + shift)
+arr.remove(25)
+print(arr)
+
+# O(n) Clear entire list
+temp = [1, 2, 3]
+temp.clear()
+print(temp)   # []
+
+# ------------------------------------------------
+# 4. SEARCHING & COUNTING
+# ------------------------------------------------
+nums = [1, 2, 3, 2, 4, 2, 5]
+
+# O(n) Linear search
+print(3 in nums)      # True
+
+# O(n) Index of first occurrence
+print(nums.index(2))  # 1
+
+# O(n) Count occurrences
+print(nums.count(2))  # 3
+
+# ------------------------------------------------
+# 5. SORTING & REVERSING
+# ------------------------------------------------
+data = [5, 1, 4, 2, 3]
+
+# O(n log n) In-place sort
+data.sort()
+print(data)
+
+# O(n log n) Sorted copy (new list)
+new_sorted = sorted(data, reverse=True)
+print(new_sorted)
+
+# O(n) Reverse list
+data.reverse()
+print(data)
+
+# ------------------------------------------------
+# 6. COPYING & EXTENDING
+# ------------------------------------------------
 a = [1, 2, 3]
-b = a          # b references same list as a
-b.append(4)
-print(a)       # [1, 2, 3, 4] -> changes reflected in a
-c = a.copy()   # Independent copy
-c.append(5)
-print(a)       # [1, 2, 3, 4]
-print(c)       # [1, 2, 3, 4, 5]
+
+# O(n) Copy list
+b = a.copy()
+
+# Modifying original does not affect copy
+a.append(4)
+print("Original:", a)
+print("Copy:", b)
+
+# O(m) Extend list
+a.extend([5, 6, 7])
+print(a)
+
+# O(n+m) Concatenation (creates new list)
+c = a + b
+print(c)
+
+# ------------------------------------------------
+# 7. LIST COMPREHENSION
+# ------------------------------------------------
+
+# O(n) Create new list
+squares = [x * x for x in range(6)]
+print(squares)
+
+# O(n) Conditional comprehension
+even_numbers = [x for x in range(10) if x % 2 == 0]
+print(even_numbers)
+
+# ------------------------------------------------
+# 8. BUILT-IN FUNCTIONS
+# ------------------------------------------------
+values = [3, 7, 1, 9, 4]
+
+print(len(values))     # O(1)
+print(min(values))     # O(n)
+print(max(values))     # O(n)
+print(sum(values))     # O(n)
+
+# any(): True if at least one element is True
+print(any([0, False, 5]))
+
+# all(): True if all elements are True
+print(all([1, True, 3]))
+
