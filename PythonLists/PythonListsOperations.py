@@ -39,7 +39,7 @@ slice_arr = arr[1:4]
 print(slice_arr)     # [25, 30, 40]
 
 # ------------------------------------------------
-# 2. INSERTION OPERATIONS
+# 2. Insertion Operations
 # ------------------------------------------------
 
 # O(1) Amortized append
@@ -55,7 +55,7 @@ arr.insert(3, 35)
 print(arr)
 
 # ------------------------------------------------
-# 3. DELETION OPERATIONS
+# 3. Deletion Operations
 # ------------------------------------------------
 
 # O(1) Pop last element
@@ -78,7 +78,7 @@ temp.clear()
 print(temp)   # []
 
 # ------------------------------------------------
-# 4. SEARCHING & COUNTING
+# 4. Searching & Counting
 # ------------------------------------------------
 
 nums = [1, 2, 3, 2, 4, 2, 5]
@@ -93,7 +93,7 @@ print(nums.index(2))  # 1
 print(nums.count(2))  # 3
 
 # ------------------------------------------------
-# 5. SORTING & REVERSING
+# 5. Sorting & Reversing
 # ------------------------------------------------
 
 data = [5, 1, 4, 2, 3]
@@ -111,7 +111,7 @@ data.reverse()
 print(data)
 
 # ------------------------------------------------
-# 6. COPYING & EXTENDING
+# 6. Copying & Extending
 # ------------------------------------------------
 
 a = [1, 2, 3]
@@ -133,7 +133,7 @@ c = a + b
 print(c)
 
 # ------------------------------------------------
-# 7. LIST COMPREHENSION
+# 7. List Comprehension
 # ------------------------------------------------
 
 # O(n) Create new list
@@ -145,7 +145,7 @@ even_numbers = [x for x in range(10) if x % 2 == 0]
 print(even_numbers)
 
 # ------------------------------------------------
-# 8. BUILT-IN FUNCTIONS
+# 8. Built-In Functions
 # ------------------------------------------------
 
 values = [3, 7, 1, 9, 4]

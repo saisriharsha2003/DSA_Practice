@@ -4,7 +4,7 @@ This single program demonstrates:
 2. Adding / Modifying Items
 3. Deleting Items
 4. Checking Keys / Values
-5. Looping Through Dictionary
+5. Traversing a Dictionary
 6. Copy / Merge
 7. Dictionary Comprehension
 =================================================
@@ -98,7 +98,7 @@ else:
     print("Not Found") # Not Found
 
 # ------------------------------------------------
-# 5. Looping Through Dictionary
+# 5. Traversing Through Dictionary
 # ------------------------------------------------
 
 # Keys only
