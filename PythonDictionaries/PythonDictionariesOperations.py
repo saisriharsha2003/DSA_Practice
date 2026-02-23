@@ -6,8 +6,7 @@ This single program demonstrates:
 4. Checking Keys / Values
 5. Looping Through Dictionary
 6. Copy / Merge
-7. List Comprehension
-8. Built-in Functions
+7. Dictionary Comprehension
 =================================================
 """
 
@@ -41,14 +40,14 @@ print(student) # {"name":"Alice","age":22,"city":"stockholm"}
 # Update value of existing key
 
 student["age"] = 23 
-print(student) # {"name":"Alice","age":22,"city":"stockholm"}
+print(student) # {"name":"Alice","age":23,"city":"stockholm"}
 
 # Update multiple values
 
 student.update({"age":24, "city":"Addanki"})
-print(student) # {"name":"Alice","age":24,"city":"india"}
+print(student) # {"name":"Alice","age":24,"city":"Addanki"}
 student.update({"name":"Sai", "grade":"A"})
-print(student) # {"name":"Sai","age":24,"city":"india","grade":"A"}
+print(student) # {"name":"Sai","age":24,"city":"Addanki","grade":"A"}
 
 
 # Set default if key not exists
@@ -141,5 +140,11 @@ print(d3) # {'a': 1, 'b': 2}
 d1.update(d2)
 print(d1) # {'a': 1, 'b': 2}
 
+# ------------------------------------------------
+# 7. Dictionary Comprehension
+# ------------------------------------------------
 
-
+new_student = {key:val for (key,val) in student.items()}
+print(new_student) # {'name': 'Sai', 'age': 24, 'city': 'Addanki', 'grade': 'A', 'country': 'India'}
+new_student = {key:val for (key,val) in student.items() if key != 'city'}
+print(new_student) # {'name': 'Sai', 'age': 24, 'grade': 'A', 'country': 'India'}

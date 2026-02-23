@@ -1,19 +1,29 @@
 """
 This single program demonstrates:
-1. Access & Update
-2. Insertion
-3. Deletion
-4. Searching & Counting
-5. Sorting & Reversing
-6. Copying & Extending
-7. List Comprehension
-8. Built-in Functions
+1. Creating Lists
+2. Access & Update
+3. Insertion
+4. Deletion
+5. Searching & Counting
+6. Sorting & Reversing
+7. Copying & Extending
+9. List Comprehension
+9. Built-in Functions
 =================================================
 """
+# ------------------------------------------------
+# 1. Creating Lists
+# ------------------------------------------------
+
+numbers = [1, 2, 3, 4, 5]
+fruits = ["apple", "banana", "cherry"]
+mixed = [1, "apple", 3.5, True]
+
 
 # ------------------------------------------------
-# 1. ACCESS & UPDATE OPERATIONS
+# 2. Acess & Update Operations
 # ------------------------------------------------
+
 arr = [10, 20, 30, 40, 50]
 
 # O(1) Access by index
@@ -70,6 +80,7 @@ print(temp)   # []
 # ------------------------------------------------
 # 4. SEARCHING & COUNTING
 # ------------------------------------------------
+
 nums = [1, 2, 3, 2, 4, 2, 5]
 
 # O(n) Linear search
@@ -84,6 +95,7 @@ print(nums.count(2))  # 3
 # ------------------------------------------------
 # 5. SORTING & REVERSING
 # ------------------------------------------------
+
 data = [5, 1, 4, 2, 3]
 
 # O(n log n) In-place sort
@@ -101,6 +113,7 @@ print(data)
 # ------------------------------------------------
 # 6. COPYING & EXTENDING
 # ------------------------------------------------
+
 a = [1, 2, 3]
 
 # O(n) Copy list
@@ -134,6 +147,7 @@ print(even_numbers)
 # ------------------------------------------------
 # 8. BUILT-IN FUNCTIONS
 # ------------------------------------------------
+
 values = [3, 7, 1, 9, 4]
 
 print(len(values))     # O(1)
