@@ -3,9 +3,9 @@ This single program demonstrates:
 1. Creating a Node Class
 2. Creating a Linked List CLass
 3. Inserting a new node at begining
-4. Deleting Items
-5. Checking Keys / Values
-6. Looping Through Dictionary
+4. Inserting a new node at the end
+5. Inserting a new ndoe in middle
+6. Traverse through Linked List
 7. Copy / Merge
 8. List Comprehension
 =================================================
@@ -27,6 +27,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
         self.length = 0
 
     # ------------------------------------------------
@@ -35,9 +36,16 @@ class LinkedList:
     
     def insert_at_begining(self, val):
         new_node = Node(val)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+            self.length += 1
+            return
+
         new_node.next = self.head
         self.head = new_node
         self.length += 1
+
 
     # ------------------------------------------------
     # 4. Inserting a new node at the end
@@ -47,14 +55,12 @@ class LinkedList:
         new_node = Node(val)
         if self.head is None:
             self.head = new_node
+            self.tail = new_node
             self.length += 1
             return 
         
-        curr = self.head
-        while curr.next:
-            curr = curr.next
-        
-        curr.next = new_node
+        self.tail.next = new_node
+        self.tail = new_node
         self.length += 1
 
     # ------------------------------------------------
@@ -80,16 +86,28 @@ class LinkedList:
         curr.next = new_node
         self.length += 1
 
-    def display(self):
-      temp = self.head
-      while temp:
-          print(temp.val, end=" -> ")
-          temp = temp.next
-      print("None")
-
-        
+    # ------------------------------------------------
+    # 6. Traverse through Linked List
+    # ------------------------------------------------
     
-
+    # Using a seprate user defined method
+    def display(self):
+        curr = self.head
+        while curr:
+            print(curr.val, end=" -> ")
+            curr = curr.next
+        print("None")
+    
+    # Using __str__ method
+    def __str__(self):
+        curr = self.head
+        res = ''
+        while curr:
+            res += (str(curr.val) + ' -> ')
+            curr = curr.next
+        
+        res += 'None'
+        return res
 
 # ----------------------------
 # Example Usage
@@ -103,8 +121,12 @@ if __name__ == "__main__":
     ll.head.next = new_node
     new_node = Node(3)
     ll.head.next.next = new_node 
+    ll.tail = new_node
+
+    print(ll) # 1 -> 2 -> 3 -> None
 
     ll.display() # 1 -> 2 -> 3 -> None
+
 
     # Insertions
     ll.insert_at_begining(0)  
