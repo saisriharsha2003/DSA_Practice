@@ -1,13 +1,17 @@
 """
 This single program demonstrates:
 1. Creating a Node Class
-2. Creating a Linked List CLass
-3. Inserting a new node at begining
-4. Inserting a new node at the end
-5. Inserting a new ndoe in middle
-6. Traverse through Linked List
-7. Copy / Merge
-8. List Comprehension
+2. Creating a Linked List Class
+3. Inserting a New Node at the Beginning
+4. Inserting a New Node at the End
+5. Inserting a New Node in the Middle
+6. Traversing Through the Linked List
+7. Search Method in Linked List
+8. Get Method in Linked List
+9. Set Method in Linked List
+10. Delete a Node at the Beginning
+11. Delete a Node at the End
+12. Delete a Node in the Middle
 =================================================
 """
 
@@ -25,10 +29,14 @@ class Node:
 # ------------------------------------------------
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self, values=None):
         self.head = None
         self.tail = None
         self.length = 0
+        
+        if values:
+            for val in values:
+                self.insert_at_end(val)
 
     # ------------------------------------------------
     # 3. Inserting a new node at the begining
@@ -70,12 +78,17 @@ class LinkedList:
     def insert_at_middle(self, pos, val):
         if pos < 0 or pos > self.length:
             return
-        new_node = Node(val)
 
         if pos == 0:
             self.insert_at_begining(val)
             return
         
+        if pos == self.length :
+            self.insert_at_end(val)
+            return
+
+        new_node = Node(val)
+
         c = 0
         curr = self.head
         while c < pos - 1:
@@ -109,19 +122,138 @@ class LinkedList:
         res += 'None'
         return res
 
+    # Using __len__ method
+    def __len__(self):
+        return self.length
+
+    # ------------------------------------------------
+    # 7. Search Method in Linked List
+    # ------------------------------------------------
+
+    def search(self, target):
+        if self.head is None:
+            return False
+        
+        curr = self.head
+        while curr:
+            if curr.val == target:
+                return True         
+            curr = curr.next
+        
+        return False
+
+    # ------------------------------------------------
+    # 8. Get Method in Linked List
+    # ------------------------------------------------
+
+    def get(self, pos):
+        if pos < 0 or pos >= self.length:
+            return
+
+        if pos == 0:
+            return self.head
+
+        if pos == self.length - 1:
+            return self.tail
+            
+        curr = self.head
+        c = 0
+        
+        while c < pos:
+            curr = curr.next
+            c += 1
+        
+        return curr
+
+    # ------------------------------------------------
+    # 9. Set Method in Linked List
+    # ------------------------------------------------
+
+    def set(self, pos, new_val):
+        val_pos = self.get(pos)
+        
+        if val_pos:
+            val_pos.val = new_val
+        
+    # ------------------------------------------------
+    # 10. Delete a node at beginning
+    # ------------------------------------------------
+    
+    def delete_at_beginning(self):
+        if self.head is None:
+            return
+        
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+
+        self.length -= 1
+    
+    # ------------------------------------------------
+    # 11. Delete a node at the end
+    # ------------------------------------------------
+
+    def delete_at_end(self):
+        if self.head is None:
+            return
+
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None 
+            self.length -= 1
+            return
+
+        curr = self.head
+
+        while curr.next != self.tail:
+            curr = curr.next
+        
+        curr.next = None
+        self.tail = curr
+        self.length -= 1
+
+    # ------------------------------------------------
+    # 12. Delete a node at middle
+    # ------------------------------------------------
+
+    def delete_at_middle(self, pos):
+        if self.head is None:
+            return
+
+        if pos < 0 or pos >= self.length:
+            return
+
+        if pos == 0:
+            self.delete_at_beginning()
+            return
+        
+        if pos == self.length - 1:
+            self.delete_at_end()
+            return
+        
+        curr = self.head
+        c = 0
+
+        while c < pos - 1:
+            curr = curr.next
+            c += 1
+        
+        curr.next = curr.next.next
+
+        self.length -= 1
+
+    
+    # Need to __iter__ and reverse and find_middle (slow / fast) methods
+
 # ----------------------------
 # Example Usage
 # ----------------------------
 if __name__ == "__main__":
+
     # Create initial list: 1 -> 2 -> 3 -> None
-    ll = LinkedList()
-    new_node = Node(1)
-    ll.head = new_node
-    new_node = Node(2)
-    ll.head.next = new_node
-    new_node = Node(3)
-    ll.head.next.next = new_node 
-    ll.tail = new_node
+    ll = LinkedList([1,2,3])
 
     print(ll) # 1 -> 2 -> 3 -> None
 
@@ -133,5 +265,30 @@ if __name__ == "__main__":
     ll.display() # 0 -> 1 -> 2 -> 3 -> None
     ll.insert_at_end(4)        
     ll.display() # 0 -> 1-> 2 -> 3 -> 4 -> None
-    ll.insert_at_middle(2, 99)  # 0 -> 1 -> 99 -> 2 -> 3 -> 4 -> None
-    ll.display()
+    ll.insert_at_middle(2, 99)  
+    ll.display() # 0 -> 1 -> 99 -> 2 -> 3 -> 4 -> None
+
+    # Search 
+    print(ll.search(3)) # True
+    print(ll.search(100)) # False
+
+    # Get Method
+    print(ll.get(0).val) # 0
+    print(ll.get(5).val) # 4
+    print(ll.get(3).val) # 2
+    print(ll.get(25)) # None
+
+    # Set Method
+    ll.set(2, 44)
+    ll.set(0, 1)
+    ll.set(5, 45)
+    ll.set(10, 40)
+    print(ll)
+
+    # Deletion
+    ll.delete_at_beginning()
+    ll.display() # 1 -> 99 -> 2 -> 3 -> 45 -> None
+    ll.delete_at_end()
+    ll.display() # 1 -> 99 -> 2 -> 3 -> None
+    ll.delete_at_middle(2)
+    ll.display() # 1 -> 44 -> 3 -> None
