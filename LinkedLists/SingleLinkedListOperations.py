@@ -12,6 +12,8 @@ This single program demonstrates:
 10. Delete a Node at the Beginning
 11. Delete a Node at the End
 12. Delete a Node in the Middle
+13. Reversing of LinkedList
+14. Find Middle node of LinkedList (Slow / Fast Pointer Approach)
 =================================================
 """
 
@@ -243,7 +245,81 @@ class LinkedList:
         curr.next = curr.next.next
 
         self.length -= 1
+    
+    # ------------------------------------------------
+    # 13. Reversing of LinkedList
+    # ------------------------------------------------
 
+    def reverse(self):
+        prev = None 
+        curr = self.head
+
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+
+        self.head = prev
+
+    # ------------------------------------------------------------------
+    # 14. Find Middle node of LinkedList (Slow / Fast Pointer Approach)
+    # ------------------------------------------------------------------
+
+    def find_middle(self):
+        slow = self.head
+        fast = self.head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+        return slow
+
+class Solution(object):
+    # ------------------------------------------------
+    # 15. Merge two sorted LinkedLists
+    # ------------------------------------------------
+
+    def mergeTwoLists(self, l1, l2):
+
+        if l1 is None:
+            return l2
+            
+        if l2 is None:
+            return l1
+            
+        dummy = Node(0)
+        tail = dummy
+        
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1 
+                l1 = l1.next 
+            else:
+                tail.next = l2
+                l2 = l2.next
+                
+            tail = tail.next
+            
+        if l1:
+            tail.next = l1
+        else:
+            tail.next = l2
+            
+        return dummy.next
+    
+    # Using __str__ method
+    def __str__(self):
+        curr = self.head
+        res = ''
+        while curr:
+            res += (str(curr.val) + ' -> ')
+            curr = curr.next
+        
+        res += 'None'
+        return res
+                
     
     # Need to __iter__ and reverse and find_middle (slow / fast) methods
 
@@ -292,3 +368,24 @@ if __name__ == "__main__":
     ll.display() # 1 -> 99 -> 2 -> 3 -> None
     ll.delete_at_middle(2)
     ll.display() # 1 -> 44 -> 3 -> None
+
+    # Reversing of LinkedList
+    ll.reverse()
+    print(ll) # 3 -> 44 -> 1 -> None
+
+    # Find middle node of LinkedList
+    print(ll.find_middle().val)
+
+    # Merge two sorted linedlists
+    ll1 = LinkedList([1, 2, 4])
+    ll2 = LinkedList([1, 3, 4])
+
+    sol = Solution()
+    merged_head = sol.mergeTwoLists(ll1.head, ll2.head)
+
+    curr = merged_head
+    while curr:
+        print(curr.val, end=" -> ")
+        curr = curr.next
+    print("None") # 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> None
+
