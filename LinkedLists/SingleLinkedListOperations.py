@@ -253,6 +253,7 @@ class LinkedList:
     def reverse(self):
         prev = None 
         curr = self.head
+        self.tail = self.head
 
         while curr:
             next_node = curr.next
@@ -308,17 +309,6 @@ class Solution(object):
             tail.next = l2
             
         return dummy.next
-    
-    # Using __str__ method
-    def __str__(self):
-        curr = self.head
-        res = ''
-        while curr:
-            res += (str(curr.val) + ' -> ')
-            curr = curr.next
-        
-        res += 'None'
-        return res
                 
     
     # Need to __iter__ and reverse and find_middle (slow / fast) methods
