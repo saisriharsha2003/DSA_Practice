@@ -1,144 +1,116 @@
-"""
-This single program demonstrates:
-1. Creating a Node Class
-2. Creating a Linked List CLass
-3. Inserting a new node at begining
-4. Inserting a new node at the end
-5. Inserting a new ndoe in middle
-6. Traverse through Linked List
-7. Copy / Merge
-8. List Comprehension
-=================================================
-"""
-
-# ------------------------------------------------
-# 1. Creating a Node Class
-# ------------------------------------------------
-
-class Node:
-    def __init__(self, val=0, next=None):
+class ListNode:
+    def __init__(self, val = 0):
         self.val = val
-        self.next = next
+        self.next = None
+        self.prev = None
 
-# ------------------------------------------------
-# 2. Creating a Linked List Classs
-# ------------------------------------------------
-
-class LinkedList:
-    def __init__(self):
+class MyCircularDeque:
+    def __init__(self, k: int):
         self.head = None
         self.tail = None
         self.length = 0
+        self.k = k
+        
+    def insertFront(self, value: int) -> bool:
+        new_node = ListNode(value)
 
-    # ------------------------------------------------
-    # 3. Inserting a new node at the begining
-    # ------------------------------------------------
-    
-    def insert_at_begining(self, val):
-        new_node = Node(val)
         if self.head is None:
-            self.head = new_node
-            self.tail = new_node
+            self.tail = self.head = new_node
+            new_node.next = new_node
+            new_node.prev = new_node
             self.length += 1
-            return
+            return True
+        
+        if self.length < self.k:
+            self.head.prev = new_node
+            new_node.next = self.head
 
-        new_node.next = self.head
-        self.head = new_node
-        self.length += 1
+            self.head = new_node
+            new_node.prev = self.tail
 
+            self.tail.next = new_node
+            self.length += 1
+            return True
+            
+        return False
+            
+    def insertLast(self, value: int) -> bool:
+        new_node = ListNode(value)
 
-    # ------------------------------------------------
-    # 4. Inserting a new node at the end
-    # ------------------------------------------------
-
-    def insert_at_end(self, val):
-        new_node = Node(val)
         if self.head is None:
-            self.head = new_node
-            self.tail = new_node
+            self.head = self.tail = new_node
+            new_node.prev = new_node
+            new_node.next = new_node
             self.length += 1
-            return 
+            return True
         
-        self.tail.next = new_node
-        self.tail = new_node
-        self.length += 1
+        if self.length < self.k:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            new_node.next = self.head
 
-    # ------------------------------------------------
-    # 5. Inserting a new node at middle
-    # ------------------------------------------------
+            self.tail = new_node
+            self.head.prev = new_node
 
-    def insert_at_middle(self, pos, val):
-        if pos < 0 or pos > self.length:
-            return
-        new_node = Node(val)
-
-        if pos == 0:
-            self.insert_at_begining(val)
-            return
+            self.length += 1
+            return True
         
-        c = 0
-        curr = self.head
-        while c < pos - 1:
-            curr = curr.next
-            c += 1
+        return False
 
-        new_node.next = curr.next
-        curr.next = new_node
-        self.length += 1
+    def deleteFront(self) -> bool:
+        if self.head is None:
+            return False
+        
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return True
 
-    # ------------------------------------------------
-    # 6. Traverse through Linked List
-    # ------------------------------------------------
-    
-    # Using a seprate user defined method
-    def display(self):
-        curr = self.head
-        while curr:
-            print(curr.val, end=" -> ")
-            curr = curr.next
-        print("None")
-    
-    ll = LinkedList()
-    new_node = Node(1)
-    ll.head = new_node
-    new_node = Node(2)
-    ll.head.next = new_node
-    new_node = Node(3)
-    ll.head.next.next = new_node 
+        self.head = self.head.next
+        self.head.prev = self.tail
+        self.tail.next = self.head
+        self.length -= 1
+        return True
+        
+    def deleteLast(self) -> bool:
+        if self.head is None:
+            return False
+        
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return True
+        
+        prev_node = self.tail.prev
+        self.tail = prev_node
+        prev_node.next = self.head
+        self.head.prev = prev_node
+        self.length -= 1
+        return True
+        
+    def getFront(self) -> int:
+        return self.head.val if self.head else -1
 
-    ll.display() # 1 -> 2 -> 3 -> None
-    
-    # Using __str__ method
-    def __str__(self):
-        curr = self.head
+    def getRear(self) -> int:
+        return self.tail.val if self.tail else -1
         
 
+    def isEmpty(self) -> bool:
+        return self.length == 0
 
-    
-
-        
-    
+    def isFull(self) -> bool:
+        return self.length == self.k
 
 
-# ----------------------------
-# Example Usage
-# ----------------------------
-if __name__ == "__main__":
-    # Create initial list: 1 -> 2 -> 3 -> None
-    ll = LinkedList()
-    new_node = Node(1)
-    ll.head = new_node
-    new_node = Node(2)
-    ll.head.next = new_node
-    new_node = Node(3)
-    ll.head.next.next = new_node 
-
-    ll.display() # 1 -> 2 -> 3 -> None
-
-    # Insertions
-    ll.insert_at_begining(0)  
-    ll.display() # 0 -> 1 -> 2 -> 3 -> None
-    ll.insert_at_end(4)        
-    ll.display() # 0 -> 1-> 2 -> 3 -> 4 -> None
-    ll.insert_at_middle(2, 99)  # 0 -> 1 -> 99 -> 2 -> 3 -> 4 -> None
-    ll.display()
+# Your MyCircularDeque object will be instantiated and called as such:
+# obj = MyCircularDeque(k)
+# param_1 = obj.insertFront(value)
+# param_2 = obj.insertLast(value)
+# param_3 = obj.deleteFront()
+# param_4 = obj.deleteLast()
+# param_5 = obj.getFront()
+# param_6 = obj.getRear()
+# param_7 = obj.isEmpty()
+# param_8 = obj.isFull()
