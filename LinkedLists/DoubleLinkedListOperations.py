@@ -364,3 +364,110 @@ class DoublyLinkedList:
         result += "None"
 
         return result
+
+# ----------------------------
+# Example Usage
+# ----------------------------
+if __name__ == "__main__":
+
+    # Create initial DLL: 1 <-> 2 <-> 3 <-> None
+    dll = DoublyLinkedList([1, 2, 3])
+
+    print(dll)  # 1 <-> 2 <-> 3 <-> None
+
+    # Forward Traversal
+    dll.display_forward()   # 1 <-> 2 <-> 3 <-> None
+
+    # Backward Traversal
+    dll.display_backward()  # 3 <-> 2 <-> 1 <-> None
+
+    # ----------------------------
+    # Insertions
+    # ----------------------------
+
+    dll.insert_at_beginning(0)
+    print(dll)  # 0 <-> 1 <-> 2 <-> 3 <-> None
+
+    dll.insert_at_end(4)
+    print(dll)  # 0 <-> 1 <-> 2 <-> 3 <-> 4 <-> None
+
+    dll.insert_at_middle(2, 99)
+    print(dll)  # 0 <-> 1 <-> 99 <-> 2 <-> 3 <-> 4 <-> None
+
+    dll.insert_before(99, 50)
+    print(dll)  # 0 <-> 1 <-> 50 <-> 99 <-> 2 <-> 3 <-> 4 <-> None
+
+    dll.insert_after(99, 100)
+    print(dll)  # 0 <-> 1 <-> 50 <-> 99 <-> 100 <-> 2 <-> 3 <-> 4 <-> None
+
+    # ----------------------------
+    # Search
+    # ----------------------------
+
+    print(dll.search(100))  # True
+    print(dll.search(500))  # False
+
+    # ----------------------------
+    # Get Method
+    # ----------------------------
+
+    print(dll.get(0).val)   # 0
+    print(dll.get(3).val)   # 99
+    print(dll.get(7).val)   # 4
+    print(dll.get(20))      # None
+
+    # ----------------------------
+    # Set Method
+    # ----------------------------
+
+    dll.set(3, 999)
+    dll.set(0, -1)
+
+    print(dll)
+    # -1 <-> 1 <-> 50 <-> 999 <-> 100 <-> 2 <-> 3 <-> 4 <-> None
+
+    # ----------------------------
+    # Length
+    # ----------------------------
+
+    print(len(dll))  # 8
+
+    # ----------------------------
+    # Deletions
+    # ----------------------------
+
+    dll.delete_at_beginning()
+    print(dll)
+    # 1 <-> 50 <-> 999 <-> 100 <-> 2 <-> 3 <-> 4 <-> None
+
+    dll.delete_at_end()
+    print(dll)
+    # 1 <-> 50 <-> 999 <-> 100 <-> 2 <-> 3 <-> None
+
+    dll.delete_at_middle(2)
+    print(dll)
+    # 1 <-> 50 <-> 100 <-> 2 <-> 3 <-> None
+
+    dll.delete_by_value(100)
+    print(dll)
+    # 1 <-> 50 <-> 2 <-> 3 <-> None
+
+    # ----------------------------
+    # Reverse DLL
+    # ----------------------------
+
+    dll.reverse()
+    print(dll)
+    # 3 <-> 2 <-> 50 <-> 1 <-> None
+
+    dll.display_backward()
+    # 1 <-> 50 <-> 2 <-> 3 <-> None
+
+    # ----------------------------
+    # Find Middle Node
+    # ----------------------------
+
+    middle = dll.find_middle()
+
+    if middle:
+        print(middle.val)  # 50
