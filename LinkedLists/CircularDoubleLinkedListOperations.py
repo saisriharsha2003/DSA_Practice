@@ -450,3 +450,154 @@ class CircularDoublyLinkedList:
 
         s += "HEAD"
         return s
+
+# ----------------------------
+# Example Usage
+# ----------------------------
+if __name__ == "__main__":
+
+    cdll = CircularDoublyLinkedList([1, 2, 3])
+
+    print("Initial List:")
+    print(cdll)
+
+    print("\nForward Traversal:")
+    cdll.display_forward()
+
+    print("\nBackward Traversal:")
+    cdll.display_backward()
+
+    # ----------------------------
+    # Insertions
+    # ----------------------------
+
+    print("\nInsert at Beginning (0)")
+    cdll.insert_at_beginning(0)
+    print(cdll)
+
+    print("\nInsert at End (4)")
+    cdll.insert_at_end(4)
+    print(cdll)
+
+    print("\nInsert 99 at Position 2")
+    cdll.insert_at_middle(2, 99)
+    print(cdll)
+
+    print("\nInsert 50 Before 99")
+    cdll.insert_before(99, 50)
+    print(cdll)
+
+    print("\nInsert 100 After 99")
+    cdll.insert_after(99, 100)
+    print(cdll)
+
+    # ----------------------------
+    # Search
+    # ----------------------------
+
+    print("\nSearch")
+    print("100 ->", cdll.search(100))
+    print("500 ->", cdll.search(500))
+
+    # ----------------------------
+    # Get Method
+    # ----------------------------
+
+    print("\nGet Node")
+
+    node = cdll.get(0)
+    print("Position 0 :", node.val if node else None)
+
+    node = cdll.get(3)
+    print("Position 3 :", node.val if node else None)
+
+    node = cdll.get(7)
+    print("Position 7 :", node.val if node else None)
+
+    node = cdll.get(20)
+    print("Position 20:", node.val if node else None)
+
+    # ----------------------------
+    # Set Method
+    # ----------------------------
+
+    print("\nSet")
+
+    cdll.set(3, 999)
+    print(cdll)
+
+    cdll.set(0, -1)
+    print(cdll)
+
+    # ----------------------------
+    # Length
+    # ----------------------------
+
+    print("\nLength")
+    print(len(cdll))
+
+    # ----------------------------
+    # Find Middle
+    # ----------------------------
+
+    print("\nMiddle Node")
+
+    middle = cdll.find_middle()
+    print(middle.val if middle else None)
+
+    # ----------------------------
+    # Reverse
+    # ----------------------------
+
+    print("\nReverse")
+
+    cdll.reverse()
+    print(cdll)
+
+    print("\nForward Traversal")
+    cdll.display_forward()
+
+    print("\nBackward Traversal")
+    cdll.display_backward()
+
+    # ----------------------------
+    # Delete by Position
+    # ----------------------------
+
+    print("\nDelete Beginning")
+    cdll.delete_at_beginning()
+    print(cdll)
+
+    print("\nDelete End")
+    cdll.delete_at_end()
+    print(cdll)
+
+    print("\nDelete Position 2")
+    cdll.delete_at_middle(2)
+    print(cdll)
+
+    # ----------------------------
+    # Delete by Value
+    # ----------------------------
+
+    print("\nDelete Value 100")
+    cdll.delete_by_value(100)
+    print(cdll)
+
+    print("\nDelete Value 999")
+    cdll.delete_by_value(999)
+    print(cdll)
+
+    print("\nDelete Value 500 (Not Present)")
+    cdll.delete_by_value(500)
+    print(cdll)
+
+    # ----------------------------
+    # Final Traversals
+    # ----------------------------
+
+    print("\nFinal Forward Traversal")
+    cdll.display_forward()
+
+    print("\nFinal Backward Traversal")
+    cdll.display_backward()
