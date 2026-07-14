@@ -1,0 +1,82 @@
+Question 1:
+def delete_at_position(self, pos):
+    if self.head is None:
+        return
+
+    if pos < 0:
+        return
+
+    if pos == 0:
+        nxt = self.head.next
+        self.head.next = None
+        self.head = nxt
+        return
+
+    curr = self.head
+    c = 0
+
+    while curr and c < pos - 1:
+        curr = curr.next
+        c += 1
+
+    if curr.next is None:
+        return
+
+    nxt = curr.next
+    curr.next = nxt.next
+    nxt.next = None
+
+
+Question 2:
+DLL is better for forward and backward history. Because in DLL we have prev and next pointers. So we can do forward and backward traversal and the backward and forward history can be achieved using DLL.
+
+Question 3:
+Forward Traversal: 20 -> 17 -> 15 -> 10 -> None
+Head: 20
+Tail: 10
+
+Question 4:
+We need to give curr.next = new_node instead of curr = new_node since by the loop end curr will be at the tail. So we need to insert at the end we need to give curr.next = new_node
+	
+Question 5:
+| Operation                           | SLL    | CSLL   | DLL    | CDLL   |
+| ----------------------------------- | -------| -------| ------ | ------ |
+| Insert Beginning                    | O(1)   | O(n)   | O(1)   | O(1)   |
+| Insert End *(without tail pointer)* | O(n)   | O(n)   | O(n)   | O(1)   |
+| Delete Beginning                    | O(1)   | O(n)   | O(1)   | O(1)   |
+| Delete End                          | O(n)   | O(n)   | O(n)   | O(1)   |
+| Search                              | O(n)   | O(n)   | O(n)   | O(n)   |
+| Reverse                             | O(n)   | O(n)   | O(n)   | O(n)   |
+
+Question 6 (Pattern Recognition)
+
+Which linked-list pattern would you immediately think of for each?
+
+Detect a cycle - slow fast pointer approach
+Find the middle node - slow fast pointer approach
+Check if a linked list is a palindrome - reverse
+Find the kth node from the end - two pointer approach
+Remove the Nth node from the end - two pointer approach
+
+
+Question 7 (Interview Question)
+
+An interviewer asks:
+
+"Why do we even need Circular Linked Lists? Why not just use normal Linked Lists?"
+
+Yeah because if we use normal linked lists it would be a time taking process lets say insert at end, delete at end like these operations. 
+I am not usre i need to rethik abou this
+
+Question 8 (The Final Boss 😄)
+
+You wake up tomorrow.
+
+You completely forget all your linked-list code.
+
+How would you derive insert_before(target) in a DLL from scratch?
+1. First I will think how to handle the empty list
+2. Next what if the target it no found
+3. What if the target is head and we need to update properly
+4. need to update the next and prev pointers properly
+5. 

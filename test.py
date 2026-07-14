@@ -1,10 +1,26 @@
-def find_middle(self):
+def delete_at_position(self, pos):
+    if self.head is None:
+        return
 
-    slow = self.head
-    fast = self.head
+    if pos < 0:
+        return
 
-    while fast and fast.next:
-        slow = slow.next
-        fast = fast.next.next
+    if pos == 0:
+        nxt = self.head.next
+        self.head.next = None
+        self.head = nxt
+        return
 
-    return slow
+    curr = self.head
+    c = 0
+
+    while curr and c < pos - 1:
+        curr = curr.next
+        c += 1
+
+    if curr.next is None:
+        return
+
+    nxt = curr.next
+    curr.next = nxt.next
+    nxt.next = None
