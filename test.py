@@ -1,26 +1,51 @@
-def delete_at_position(self, pos):
-    if self.head is None:
-        return
+class Node:
+    def __init__(self, val = 0, next = None):
+        self.val = val
+        self.next = next
 
-    if pos < 0:
-        return
+class MinStack:
 
-    if pos == 0:
-        nxt = self.head.next
-        self.head.next = None
-        self.head = nxt
-        return
+    def __init__(self):
+        self.top = None
+        self.minNode = None
 
-    curr = self.head
-    c = 0
+    def push(self, val: int) -> None:
+        self.top = Node(val = val, next = self.top)
+        if (self.minNode is None) or (self.minNode.val >= val):
+            self.minNode = Node(val = val, next = self.minNode)
 
-    while curr and c < pos - 1:
-        curr = curr.next
-        c += 1
+    def pop(self) -> None:
+        if self.top.val == self.minNode.val:
+            self.minNode = self.minNode.next
+        self.top = self.top.next
 
-    if curr.next is None:
-        return
+    def peek(self) -> int:
+        return self.top.val
 
-    nxt = curr.next
-    curr.next = nxt.next
-    nxt.next = None
+    def getMin(self) -> int:
+        return self.minNode.val
+
+
+def main():
+    min_stack = MinStack()
+
+    # Push values, including duplicate minimums
+    min_stack.push(5)
+    min_stack.push(3)
+    min_stack.push(3)
+
+    print("Current minimum:", min_stack.getMin())  # 3
+
+    min_stack.pop()
+    print("After first pop:")
+    print("Top:", min_stack.peek())                # 3
+    print("Minimum:", min_stack.getMin())          # 3
+
+    min_stack.pop()
+    print("After second pop:")
+    print("Top:", min_stack.peek())                # 5
+    print("Minimum:", min_stack.getMin())          # 5
+
+
+if __name__ == "__main__":
+    main()
