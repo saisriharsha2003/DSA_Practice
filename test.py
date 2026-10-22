@@ -1,51 +1,13 @@
-class Node:
-    def __init__(self, val = 0, next = None):
-        self.val = val
-        self.next = next
+def getIntersectionNode(headA: ListNode | None, headB: ListNode | None) -> ListNode | None:
+    if not headA and not headB:
+        return None
+    
+    p1, p2 = headA, headB
+    while p1 is not p2:
+        p1 = p1.next if p1 else headB
+        p2 = p2.next if p2 else headA
+    
+    return p1
+    
 
-class MinStack:
-
-    def __init__(self):
-        self.top = None
-        self.minNode = None
-
-    def push(self, val: int) -> None:
-        self.top = Node(val = val, next = self.top)
-        if (self.minNode is None) or (self.minNode.val >= val):
-            self.minNode = Node(val = val, next = self.minNode)
-
-    def pop(self) -> None:
-        if self.top.val == self.minNode.val:
-            self.minNode = self.minNode.next
-        self.top = self.top.next
-
-    def peek(self) -> int:
-        return self.top.val
-
-    def getMin(self) -> int:
-        return self.minNode.val
-
-
-def main():
-    min_stack = MinStack()
-
-    # Push values, including duplicate minimums
-    min_stack.push(5)
-    min_stack.push(3)
-    min_stack.push(3)
-
-    print("Current minimum:", min_stack.getMin())  # 3
-
-    min_stack.pop()
-    print("After first pop:")
-    print("Top:", min_stack.peek())                # 3
-    print("Minimum:", min_stack.getMin())          # 3
-
-    min_stack.pop()
-    print("After second pop:")
-    print("Top:", min_stack.peek())                # 5
-    print("Minimum:", min_stack.getMin())          # 5
-
-
-if __name__ == "__main__":
-    main()
+    
