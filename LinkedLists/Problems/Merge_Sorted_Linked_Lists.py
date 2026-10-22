@@ -1,14 +1,16 @@
 """
-LOGIC: Merge Two Sorted Lists
+LOGIC: Merge Two Sorted Linked Lists
 
 1. Create a dummy node to simplify building the merged list.
 2. Compare the current nodes of both sorted lists.
-3. Attach the smaller node to the merged list and move its pointer.
-4. When one list ends, attach the remaining part of the other list.
-5. Return dummy.next as the merged list's head.
+3. Attach the smaller-valued node to the merged list.
+4. Move the pointer of the list from which the node was taken.
+5. Repeat until one list becomes empty.
+6. Attach the remaining nodes of the non-empty list.
+7. Return dummy.next as the head of the merged list.
 
 Time Complexity: O(m + n)
-Space Complexity: O(1) auxiliary space
+Auxiliary Space Complexity: O(1)
 """
 
 class ListNode:

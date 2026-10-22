@@ -1,13 +1,15 @@
 """
-LOGIC: Detect Cycle in a Linked List (Floyd's Algorithm)
+LOGIC: Linked List Cycle Detection
 
 1. Initialize slow and fast pointers at the head.
-2. Move slow by one node and fast by two nodes.
-3. If both pointers meet, a cycle exists.
-4. If fast or fast.next becomes None, no cycle exists.
+2. Move slow one node at a time.
+3. Move fast two nodes at a time.
+4. If slow and fast point to the same node, a cycle exists.
+5. If fast or fast.next becomes None, no cycle exists.
+6. Return True if a cycle is detected; otherwise, return False.
 
 Time Complexity: O(n)
-Space Complexity: O(1)
+Auxiliary Space Complexity: O(1)
 """
 
 class ListNode:

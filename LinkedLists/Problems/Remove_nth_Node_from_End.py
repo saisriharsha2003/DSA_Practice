@@ -1,15 +1,17 @@
 """
 LOGIC: Remove Nth Node From End
 
-1. Create a dummy node before the head.
-2. Move the first pointer n + 1 steps ahead of the dummy.
-3. Move both pointers one step at a time until first reaches None.
-4. The second pointer now points to the node before the target.
-5. Skip the target node by updating second.next.
-6. Return dummy.next because the original head may have been removed.
+1. Initialize two pointers at the head.
+2. Move the first pointer n nodes forward.
+3. If the first pointer becomes None, remove the head node.
+4. Otherwise, move both pointers one node at a time
+   until the first pointer reaches the last node.
+5. The second pointer now points to the node before the target.
+6. Skip the target node by updating the second pointer's next link.
+7. Return the head of the modified list.
 
 Time Complexity: O(n)
-Space Complexity: O(1)
+Auxiliary Space Complexity: O(1)
 """
 
 class ListNode:

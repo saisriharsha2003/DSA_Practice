@@ -1,16 +1,16 @@
 """
-LOGIC: Intersection of Two Linked Lists (Two Pointers)
+LOGIC: Intersection of Two Linked Lists
 
-1. Initialize p1 at headA and p2 at headB.
-2. Move both pointers one node at a time.
-3. When p1 reaches None, redirect it to headB.
-4. When p2 reaches None, redirect it to headA.
-5. If the lists intersect, both pointers meet at the same shared node.
-6. If they do not intersect, both eventually become None.
-7. Return p1, which is either the shared node or None.
+1. Initialize two pointers, one at each list's head.
+2. Move both pointers forward one node at a time.
+3. When a pointer reaches None, redirect it to the other list's head.
+4. Continue until both pointers point to the same node or both reach None.
+5. If they meet at a shared node, return that node.
+6. If both reach None, the lists do not intersect.
+7. Compare node identity, not node values.
 
 Time Complexity: O(m + n)
-Space Complexity: O(1)
+Auxiliary Space Complexity: O(1)
 """
 
 class ListNode:
