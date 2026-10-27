@@ -1,82 +1,29 @@
-Question 1:
-def delete_at_position(self, pos):
-    if self.head is None:
-        return
+I'm learning DSA in Python and practicing LeetCode-style linked-list problems.
 
-    if pos < 0:
-        return
+**My learning preferences**
+- Give me one problem at a time.
+- Let me attempt the solution before showing me the answer.
+- Focus on easy-to-medium problems for now; skip hard problems.
+- After I submit code, review each function, correctness, edge cases, time complexity, and auxiliary space complexity.
+- Keep explanations concise and practical.
+- When I finish a problem, provide the full code with a logic explanation at the top, helper functions, and a simple `main()` with test cases.
 
-    if pos == 0:
-        nxt = self.head.next
-        self.head.next = None
-        self.head = nxt
-        return
+**Linked-list problems I've already practiced**
+1. Reverse Linked List
+2. Middle of the Linked List
+3. Linked List Cycle Detection
+4. Remove Nth Node From End
+5. Merge Two Sorted Lists
+6. Intersection of Two Linked Lists
+7. Palindrome Linked List
+8. Reorder List
+9. Remove Duplicates from Sorted List
+10. Remove Duplicates from Sorted List II
+11. Add Two Numbers
+12. Odd Even Linked List
+13. Swap Nodes in Pairs
 
-    curr = self.head
-    c = 0
+I have just finished reviewing my `swapPairs()` solution. The algorithm is correct, but I had a VS Code Code Runner issue where the terminal displayed only `Example 1:`. We added debugging print statements to investigate.
 
-    while curr and c < pos - 1:
-        curr = curr.next
-        c += 1
-
-    if curr.next is None:
-        return
-
-    nxt = curr.next
-    curr.next = nxt.next
-    nxt.next = None
-
-
-Question 2:
-DLL is better for forward and backward history. Because in DLL we have prev and next pointers. So we can do forward and backward traversal and the backward and forward history can be achieved using DLL.
-
-Question 3:
-Forward Traversal: 20 -> 17 -> 15 -> 10 -> None
-Head: 20
-Tail: 10
-
-Question 4:
-We need to give curr.next = new_node instead of curr = new_node since by the loop end curr will be at the tail. So we need to insert at the end we need to give curr.next = new_node
-	
-Question 5:
-| Operation                           | SLL    | CSLL   | DLL    | CDLL   |
-| ----------------------------------- | -------| -------| ------ | ------ |
-| Insert Beginning                    | O(1)   | O(n)   | O(1)   | O(1)   |
-| Insert End *(without tail pointer)* | O(n)   | O(n)   | O(n)   | O(1)   |
-| Delete Beginning                    | O(1)   | O(n)   | O(1)   | O(1)   |
-| Delete End                          | O(n)   | O(n)   | O(n)   | O(1)   |
-| Search                              | O(n)   | O(n)   | O(n)   | O(n)   |
-| Reverse                             | O(n)   | O(n)   | O(n)   | O(n)   |
-
-Question 6 (Pattern Recognition)
-
-Which linked-list pattern would you immediately think of for each?
-
-Detect a cycle - slow fast pointer approach
-Find the middle node - slow fast pointer approach
-Check if a linked list is a palindrome - reverse
-Find the kth node from the end - two pointer approach
-Remove the Nth node from the end - two pointer approach
-
-
-Question 7 (Interview Question)
-
-An interviewer asks:
-
-"Why do we even need Circular Linked Lists? Why not just use normal Linked Lists?"
-
-Yeah because if we use normal linked lists it would be a time taking process lets say insert at end, delete at end like these operations. 
-I am not usre i need to rethik abou this
-
-Question 8 (The Final Boss 😄)
-
-You wake up tomorrow.
-
-You completely forget all your linked-list code.
-
-How would you derive insert_before(target) in a DLL from scratch?
-1. First I will think how to handle the empty list
-2. Next what if the target it no found
-3. What if the target is head and we need to update properly
-4. need to update the next and prev pointers properly
-5. 
+**What I want next**
+Continue my linked-list DSA practice from here without repeating the problems listed above. Give me the next suitable easy-to-medium problem, one at a time, and let me solve it first.

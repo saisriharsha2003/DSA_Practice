@@ -1,13 +1,24 @@
-def getIntersectionNode(headA: ListNode | None, headB: ListNode | None) -> ListNode | None:
-    if not headA and not headB:
-        return None
+def oddEvenList(head: ListNode | None) -> ListNode | None:
+    curr = head
+    even = ListNode(-1)
+    odd = ListNode(-1)
+    tail = dummy
+    e, o = even, odd
+    while curr:
+        nxt_node = curr.next
+        if curr.val % 2 == 0:
+            e.next = curr
+            e = e.next
+        else:
+            o.next = curr
+            o = o.next
+        
+        curr.next = None
+        curr = nxt_node
     
-    p1, p2 = headA, headB
-    while p1 is not p2:
-        p1 = p1.next if p1 else headB
-        p2 = p2.next if p2 else headA
+    o = odd
+    while o.next:
+        o = o.next
     
-    return p1
-    
-
-    
+    o.next = even.next
+    return odd.next
